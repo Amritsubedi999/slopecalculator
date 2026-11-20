@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "About // Slope Calculator Engineering Specifications";
+const description = "Technical specifications, mathematical architecture, numerical stability protocols, and design philosophy of the production-ready Slope Calculator.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto space-y-8 font-mono text-xs">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-structural)] pb-4 space-y-1">
+      <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider">
+        SYSTEM DOCUMENTATION // SPECIFICATION 01
+      </div>
+      <h1 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase">
+        About the Slope Calculator
+      </h1>
+      <p class="text-[var(--text-secondary)] text-[11px]">
+        Utilitarian Cartesian computation engine engineered for accuracy, accessibility, and zero-distraction field utility.
+      </p>
+    </div>
+
+    <!-- Section 1: Product Purpose -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        1. Purpose & Design Philosophy
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        The Slope Calculator was developed to provide civil engineers, surveyors, architects, construction trades, educators, and students with an uncompromisingly precise, distraction-free analytical instrument.
+      </p>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        Unlike consumer calculator apps laden with advertisements, tracking scripts, decorative animations, or misleading rounding, this platform adheres to strict engineering utility:
+      </p>
+      <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)] pl-2">
+        <li><span class="text-[var(--text-primary)] font-semibold">High-Contrast Utilitarian UI:</span> Sharp 1px borders, verified WCAG AAA contrast ratios, and deliberate absence of non-functional decorative styling.</li>
+        <li><span class="text-[var(--text-primary)] font-semibold">Deterministic Pure Functions:</span> Calculations execute synchronously in memory without network latency or external API dependencies.</li>
+        <li><span class="text-[var(--text-primary)] font-semibold">Immediate Visual Feedback:</span> Dynamic inline SVG vectors illustrate geometric angles, rise, run, and hypotenuse in real-time.</li>
+      </ul>
+    </section>
+
+    <!-- Section 2: Mathematical Standards -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        2. Computational Architecture & Edge Cases
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        All calculations are computed according to IEEE-754 64-bit double-precision floating-point arithmetic. The engine enforces explicit edge-case guards to prevent numerical instability:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] pt-1">
+        <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+          <div class="font-bold text-[var(--text-primary)]">Vertical Lines (Δx = 0)</div>
+          <p class="text-[var(--text-secondary)]">
+            When horizontal displacement is zero, slope is mathematically undefined. The engine never outputs Infinity or NaN; it classifies the condition as a 90° vertical line with equation x = x₁.
+          </p>
+        </div>
+        <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+          <div class="font-bold text-[var(--text-primary)]">Horizontal Lines (Δy = 0)</div>
+          <p class="text-[var(--text-secondary)]">
+            When vertical displacement is zero, the engine outputs slope = 0, grade = 0%, and equation y = y₁, preserving algebraic sign consistency without -0 artifacts.
+          </p>
+        </div>
+        <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+          <div class="font-bold text-[var(--text-primary)]">Precision Control</div>
+          <p class="text-[var(--text-secondary)]">
+            Users may select 2, 3, 4, 6, or 8 decimal places. The system retains full internal floating-point precision throughout computation and applies rounding solely during string serialization.
+          </p>
+        </div>
+        <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+          <div class="font-bold text-[var(--text-primary)]">Dimensional Homogeneity</div>
+          <p class="text-[var(--text-secondary)]">
+            In Rise & Run mode, mixed metric and imperial units (inches, feet, yards, millimeters, centimeters, meters) are converted to a shared meter standard prior to calculating scalar ratios.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Technical Stack -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        3. Technology Stack & Accessibility
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        Built with AstroJS for static HTML generation and Tailwind CSS v4 for design tokens. Compliant with W3C WAI-ARIA authoring practices, featuring keyboard-accessible tabs, visible focus rings, and live screen reader status announcements.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

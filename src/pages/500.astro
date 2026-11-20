@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "500 Server Error // Slope Calculator";
+const description = "A server execution error has occurred. Return to the Slope Calculator main interface.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-2xl mx-auto py-16 text-center space-y-6 font-mono">
+    <div class="inline-flex items-center justify-center w-16 h-16 border-2 border-[var(--text-primary)] text-2xl font-bold">
+      500
+    </div>
+    
+    <div class="space-y-2">
+      <h1 class="text-xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
+        Internal Execution Anomaly
+      </h1>
+      <p class="text-xs text-[var(--text-secondary)] max-w-md mx-auto leading-relaxed">
+        An unhandled execution condition interrupted page generation. All core calculator operations execute client-side and remain unaffected.
+      </p>
+    </div>
+
+    <div class="border border-[var(--border-structural)] bg-[var(--surface-muted)] p-4 text-[11px] max-w-md mx-auto text-left space-y-1">
+      <div>STATUS: HTTP 500 INTERNAL_SERVER_ERROR</div>
+      <div>FALLBACK: CLIENT_ISOLATION_ENGAGED</div>
+      <div>ACTION: RE-ESTABLISH_SESSION</div>
+    </div>
+
+    <div>
+      <a
+        href="/"
+        class="inline-block border border-[var(--text-primary)] bg-[var(--text-primary)] text-[var(--bg-page)] px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+      >
+        Re-Initialize Calculator
+      </a>
+    </div>
+  </div>
+</BaseLayout>

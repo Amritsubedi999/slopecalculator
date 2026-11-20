@@ -1,0 +1,152 @@
+---
+// Practical Guide Component for Homepage (~650 words, rigorous, factual)
+---
+
+<article id="guide" class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-8 text-xs font-mono">
+  <div class="border-b border-[var(--border-structural)] pb-4">
+    <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider mb-1">
+      TECHNICAL SPECIFICATION & REFERENCE MANUAL
+    </div>
+    <h2 class="text-base sm:text-lg font-bold text-[var(--text-primary)] uppercase tracking-tight">
+      Engineering Principles: Slope, Grade, and Angular Inclination
+    </h2>
+  </div>
+
+  <!-- A. Understanding Slope -->
+  <section class="space-y-2">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      1. Mathematical Definition of Slope
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      In Cartesian geometry and applied kinematics, slope (conventionally denoted by the variable <span class="text-[var(--text-primary)] font-semibold">m</span>) measures the steepness and directional inclination of a straight line relative to the horizontal axis. It quantifies the rate of change of the dependent vertical variable (<span class="text-[var(--text-primary)] font-semibold">y</span>) per unit change of the independent horizontal variable (<span class="text-[var(--text-primary)] font-semibold">x</span>).
+    </p>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      The mathematical sign of the slope strictly determines line trajectory:
+    </p>
+    <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)] pl-2">
+      <li><span class="text-[var(--text-primary)] font-semibold">Positive Slope (m &gt; 0):</span> Ascending trajectory; values of y increase as x increases from left to right.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Negative Slope (m &lt; 0):</span> Descending trajectory; values of y decrease as x increases from left to right.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Zero Slope (m = 0):</span> Strictly horizontal line; no vertical displacement occurs regardless of horizontal change.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Undefined Slope:</span> Strictly vertical line; horizontal displacement is zero, resulting in a mathematical division by zero.</li>
+    </ul>
+  </section>
+
+  <!-- B. Calculating Slope Between Two Points -->
+  <section class="space-y-3">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      2. The Two-Point Coordinate Formula
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      When two distinct spatial coordinates P₁(x₁, y₁) and P₂(x₂, y₂) are established on a 2D plane, the slope is computed via the ratio of vertical change (Δy) to horizontal change (Δx):
+    </p>
+    <div class="p-3 border border-[var(--border-structural)] bg-[var(--surface-muted)] font-mono text-center text-sm font-bold text-[var(--text-primary)]">
+      m = (y₂ - y₁) / (x₂ - x₁) = Δy / Δx
+    </div>
+    <div class="space-y-1">
+      <div class="font-semibold text-[var(--text-primary)]">Worked Engineering Example:</div>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        Consider civil footing markers at P₁(2.0, 3.5) meters and P₂(8.0, 6.5) meters:
+      </p>
+      <div class="p-2 border border-[var(--border-structural)] bg-[var(--surface-muted)] text-[11px] space-y-0.5">
+        <div>1. Horizontal displacement: Δx = 8.0 - 2.0 = 6.0 m</div>
+        <div>2. Vertical displacement: Δy = 6.5 - 3.5 = 3.0 m</div>
+        <div>3. Slope calculation: m = 3.0 / 6.0 = 0.5000</div>
+        <div>4. Linear equation: y - 3.5 = 0.5(x - 2.0) → y = 0.5x + 2.5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. Rise Over Run & Unit Consistency -->
+  <section class="space-y-2">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      3. Rise Over Run & Dimensional Homogeneity
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      In physical construction, civil surveying, and framing, slope is colloquially described as <span class="text-[var(--text-primary)] font-semibold">Rise over Run</span>, where Rise equals vertical elevation change and Run equals horizontal distance.
+    </p>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      <span class="text-[var(--text-primary)] font-bold">Crucial Dimensional Principle:</span> Slope is an inherently dimensionless scalar ratio. Therefore, both Rise and Run must be converted into identical units of measurement before computing the quotient. Dividing a rise measured in inches by a run measured in feet without standardizing units creates a 12-fold systematic error.
+    </p>
+  </section>
+
+  <!-- D. Percentage Grade -->
+  <section class="space-y-2">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      4. Percentage Grade in Civil Infrastructure
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      Percentage grade expresses slope as vertical rise per 100 units of horizontal run:
+    </p>
+    <div class="p-3 border border-[var(--border-structural)] bg-[var(--surface-muted)] font-mono text-center text-sm font-bold text-[var(--text-primary)]">
+      Grade (%) = (Rise / Run) × 100 = m × 100
+    </div>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      A 100% grade corresponds to a 1:1 slope (45° angle), wherein horizontal run exactly equals vertical rise. Slopes exceeding 45° possess grade percentages greater than 100% (e.g., a 2:1 slope equals a 200% grade).
+    </p>
+  </section>
+
+  <!-- E. Converting Slope to Angular Inclination -->
+  <section class="space-y-2">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      5. Trigonometric Relationship: Slope to Angle
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      The relationship between horizontal run, vertical rise, and inclination angle (θ) conforms to standard right-triangle trigonometry. The tangent of θ equals rise divided by run:
+    </p>
+    <div class="p-3 border border-[var(--border-structural)] bg-[var(--surface-muted)] font-mono text-center text-sm font-bold text-[var(--text-primary)]">
+      tan(θ) = Rise / Run = m &nbsp;&nbsp;⟹&nbsp;&nbsp; θ = arctan(m)
+    </div>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      To express the resultant angle in degrees, multiply the radian outcome of arctan(m) by (180 / π). Because the tangent function approaches positive and negative infinity as angle θ approaches ±90°, true vertical segments cannot be represented by a finite real number.
+    </p>
+  </section>
+
+  <!-- F. Real-World Applications -->
+  <section class="space-y-3">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      6. Field Applications & Regulatory Standards
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px]">
+      <div class="border border-[var(--border-structural)] p-3 space-y-1">
+        <div class="font-bold text-[var(--text-primary)]">ADA Wheelchair Ramp Standards</div>
+        <p class="text-[var(--text-secondary)]">
+          The Americans with Disabilities Act (ADA) mandates a maximum slope of 1:12 (8.33% grade or ~4.76°), with a maximum rise of 30 inches (760 mm) per uninterrupted ramp run.
+        </p>
+      </div>
+      <div class="border border-[var(--border-structural)] p-3 space-y-1">
+        <div class="font-bold text-[var(--text-primary)]">Staircase Geometry (IBC 1011)</div>
+        <p class="text-[var(--text-secondary)]">
+          The International Building Code restricts maximum riser height to 7 inches (178 mm) and minimum tread depth to 11 inches (279 mm), establishing optimal stairway pitch between 30° and 37°.
+        </p>
+      </div>
+      <div class="border border-[var(--border-structural)] p-3 space-y-1">
+        <div class="font-bold text-[var(--text-primary)]">Road & Highway Gradients</div>
+        <p class="text-[var(--text-secondary)]">
+          AASHTO highway design guides restrict interstate grades to 6% in mountainous terrain and 3% to 4% in flat or rolling terrain to prevent commercial vehicle brake overheating.
+        </p>
+      </div>
+      <div class="border border-[var(--border-structural)] p-3 space-y-1">
+        <div class="font-bold text-[var(--text-primary)]">Foundation Drainage Swales</div>
+        <p class="text-[var(--text-secondary)]">
+          Site grading specifications require a minimum positive slope of 2% (1/4 inch per foot) for the first 10 feet adjacent to building foundations to channel hydrostatic surface runoff away from structural elements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- G. Practical Verification & Error Prevention -->
+  <section class="space-y-2">
+    <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+      7. Measurement Verification Protocol
+    </h3>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+      To prevent errors in surveying and fabrication:
+    </p>
+    <ol class="list-decimal list-inside space-y-1 text-[var(--text-secondary)] pl-2">
+      <li><span class="text-[var(--text-primary)] font-semibold">Verify Coordinate Orientation:</span> Always maintain consistent (x, y) order. Inverting coordinates (y, x) computes cotangent instead of tangent.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Check Baseline Linearity:</span> Ensure the surface does not exhibit midpoint deflection or sag before treating elevation as a straight hypotenuse.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Recognize Zero Run:</span> When Δx = 0, document the condition as a vertical line; never record it as an arbitrarily large number or zero.</li>
+      <li><span class="text-[var(--text-primary)] font-semibold">Maintain Full Precision Internally:</span> Round only at display generation to prevent cumulative error in multistage surveying networks.</li>
+    </ol>
+  </section>
+</article>

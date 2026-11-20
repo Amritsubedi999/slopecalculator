@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  jsonLd,
+  ogType = 'website',
+} = Astro.props;
+
+// Dynamic URL handling: derive canonical & OG URLs using Astro.site and Astro.url
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://slopecalculator.pages.dev';
+const computedCanonical = canonicalUrl || new URL(Astro.url.pathname, siteOrigin).href;
+const currentUrl = new URL(Astro.url.pathname, siteOrigin).href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={computedCanonical} />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:site_name" content="Slope Calculator" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:type" content={ogType} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Technical SEO & Indexing Directives -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+
+    <!-- Favicon (Inline Minimalist SVG) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M3 21L21 21L21 3Z'/></svg>" />
+
+    <!-- FOUC Prevention & Theme Initialization Script -->
+    <script is:inline>
+      (function() {
+        try {
+          var savedTheme = localStorage.getItem('theme') || 'system';
+          var isDark = false;
+          if (savedTheme === 'dark') {
+            isDark = true;
+          } else if (savedTheme === 'light') {
+            isDark = false;
+          } else {
+            isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          }
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          document.documentElement.setAttribute('data-theme', savedTheme);
+
+          // Reactive listener for OS theme shifts in system mode
+          if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+              if ((localStorage.getItem('theme') || 'system') === 'system') {
+                if (e.matches) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              }
+            });
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+        }
+      })();
+    </script>
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+  </head>
+  <body class="bg-[var(--bg-page)] text-[var(--text-primary)] antialiased transition-colors">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content" class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

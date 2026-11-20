@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Terms of Use // Slope Calculator";
+const description = "Terms of Use, mathematical calculation disclaimer, engineering verification requirements, and open license terms for Slope Calculator.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto space-y-8 font-mono text-xs">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-structural)] pb-4 space-y-1">
+      <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider">
+        LEGAL & COMPLIANCE // DOCUMENT REF: TERMS-01
+      </div>
+      <h1 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase">
+        Terms of Use
+      </h1>
+      <p class="text-[var(--text-secondary)] text-[11px]">
+        Last updated: November 2024. Review engineering verification requirements before practical application.
+      </p>
+    </div>
+
+    <!-- Section 1: Acceptance of Terms -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        1. Acceptance of Terms
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        By accessing or utilizing the Slope Calculator application, you agree to be bound by these Terms of Use. If you disagree with any portion of these provisions, your sole remedy is to cease using the tool.
+      </p>
+    </section>
+
+    <!-- Section 2: Engineering Verification Disclaimer -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        2. Engineering & Construction Verification Disclaimer
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        The computational engine is provided strictly as an educational and mathematical reference. While algorithms are rigorously tested against standard Cartesian formulas and IEEE-754 precision standards:
+      </p>
+      <div class="p-3 border border-[var(--border-structural)] bg-[var(--surface-muted)] text-[11px] text-[var(--text-primary)] font-semibold leading-relaxed">
+        MANDATORY VERIFICATION NOTICE: Users are solely responsible for independently verifying all calculation results, dimensions, slope ratios, and angular cuts against physical site conditions, manufacturer specifications, and applicable local building codes (including ADA, IBC, and AASHTO requirements).
+      </div>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        Do not rely solely on this or any automated tool for critical load-bearing structural design, public highway banking, commercial drainage permits, or safety-critical accessibility construction without professional review by a licensed Civil or Structural Engineer.
+      </p>
+    </section>
+
+    <!-- Section 3: Disclaimer of Warranties -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        3. Disclaimer of Warranties & Limitation of Liability
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS, CONTRIBUTORS, OR HOSTING PROVIDERS BE LIABLE FOR ANY CLAIM, DAMAGES, LOSS OF PROFITS, CONSTRUCTION ERRORS, STRUCTURAL DEFECTS, OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
+      </p>
+    </section>
+
+    <!-- Section 4: License & Intellectual Property -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        4. Open Source License
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        The mathematical calculation logic, SVG rendering routines, and interface components are made available under the permissive MIT License. You are free to inspect, audit, copy, modify, merge, publish, and distribute the software in educational and commercial environments in accordance with standard MIT license notices.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

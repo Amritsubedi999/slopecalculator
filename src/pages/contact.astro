@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Contact // Slope Calculator Engineering Feedback";
+const description = "Contact the Slope Calculator development team for technical inquiries, mathematical verification issues, and accessibility feedback.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto space-y-8 font-mono text-xs">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-structural)] pb-4 space-y-1">
+      <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider">
+        COMMUNICATION // CHANNEL IDENTIFIER: COMMS-01
+      </div>
+      <h1 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase">
+        Contact & Technical Feedback
+      </h1>
+      <p class="text-[var(--text-secondary)] text-[11px]">
+        Report mathematical anomalies, request unit additions, or submit accessibility improvement notices.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Direct Communication Channels -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-4">
+        <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+          Direct Channels
+        </h2>
+        <div class="space-y-3 text-[11px]">
+          <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+            <div class="font-bold text-[var(--text-primary)]">Technical Support & Inquiries</div>
+            <div class="text-[var(--text-secondary)]">General inquiries, architectural feedback, educational use:</div>
+            <div class="text-[var(--text-primary)] font-semibold select-all">engineering@slopecalculator.pages.dev</div>
+          </div>
+
+          <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+            <div class="font-bold text-[var(--text-primary)]">Mathematical Bug Reporting</div>
+            <div class="text-[var(--text-secondary)]">Edge-case reports, precision artifacts, or unit conversion discrepancies:</div>
+            <div class="text-[var(--text-primary)] font-semibold select-all">qa-reports@slopecalculator.pages.dev</div>
+          </div>
+
+          <div class="border border-[var(--border-structural)] p-3 bg-[var(--surface-muted)] space-y-1">
+            <div class="font-bold text-[var(--text-primary)]">Accessibility & WCAG Compliance</div>
+            <div class="text-[var(--text-secondary)]">Screen reader feedback or keyboard navigation barriers:</div>
+            <div class="text-[var(--text-primary)] font-semibold select-all">a11y@slopecalculator.pages.dev</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback / Inquiry Form (Accessible, utilitarian) -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-4">
+        <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+          Submit Report / Query
+        </h2>
+        <form id="contact-form" class="space-y-3">
+          <div>
+            <label for="contact-name" class="block text-[10px] uppercase text-[var(--text-secondary)] mb-1">
+              Name or Identifier *
+            </label>
+            <input
+              type="text"
+              id="contact-name"
+              required
+              class="w-full border border-[var(--border-structural)] bg-[var(--surface-muted)] px-3 py-2 text-xs font-mono text-[var(--text-primary)] focus:outline-none focus:border-[var(--text-primary)]"
+              placeholder="e.g. Structural Drafter / Engineer"
+            />
+          </div>
+
+          <div>
+            <label for="contact-email" class="block text-[10px] uppercase text-[var(--text-secondary)] mb-1">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              id="contact-email"
+              required
+              class="w-full border border-[var(--border-structural)] bg-[var(--surface-muted)] px-3 py-2 text-xs font-mono text-[var(--text-primary)] focus:outline-none focus:border-[var(--text-primary)]"
+              placeholder="name@domain.com"
+            />
+          </div>
+
+          <div>
+            <label for="contact-category" class="block text-[10px] uppercase text-[var(--text-secondary)] mb-1">
+              Inquiry Classification *
+            </label>
+            <select
+              id="contact-category"
+              required
+              class="w-full border border-[var(--border-structural)] bg-[var(--surface-muted)] px-3 py-2 text-xs font-mono text-[var(--text-primary)] focus:outline-none focus:border-[var(--text-primary)]"
+            >
+              <option value="math">Mathematical / Calculation Feedback</option>
+              <option value="units">Unit Measurement Request</option>
+              <option value="ui">UI / Diagram Usability</option>
+              <option value="a11y">Accessibility Issue</option>
+              <option value="other">General Inquiries</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contact-message" class="block text-[10px] uppercase text-[var(--text-secondary)] mb-1">
+              Details & Observed Values *
+            </label>
+            <textarea
+              id="contact-message"
+              rows="4"
+              required
+              class="w-full border border-[var(--border-structural)] bg-[var(--surface-muted)] px-3 py-2 text-xs font-mono text-[var(--text-primary)] focus:outline-none focus:border-[var(--text-primary)]"
+              placeholder="Provide specific inputs (X1, Y1, X2, Y2 or Rise/Run), observed result, and expected result..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full border border-[var(--text-primary)] bg-[var(--text-primary)] text-[var(--bg-page)] py-2 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+          >
+            Transmit Report
+          </button>
+        </form>
+
+        <div id="contact-success-msg" class="hidden p-3 border border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold">
+          ✓ TRANSMISSION RECORDED: Thank you. Your mathematical inquiry has been submitted.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const successMsg = document.getElementById('contact-success-msg');
+        if (successMsg) successMsg.classList.remove('hidden');
+        form.reset();
+      });
+    }
+  </script>
+</BaseLayout>

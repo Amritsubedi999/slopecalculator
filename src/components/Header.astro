@@ -1,0 +1,114 @@
+---
+import ThemeSwitcher from './ThemeSwitcher.astro';
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: '/', label: 'Calculator' },
+  { href: '/about', label: 'About' },
+  { href: '/privacy-policy', label: 'Privacy' },
+  { href: '/terms', label: 'Terms' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="w-full border-b border-[var(--border-structural)] bg-[var(--bg-page)] sticky top-0 z-40 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
+    <!-- Brand / Tool Title -->
+    <a href="/" class="flex items-center gap-2 text-sm font-mono tracking-tight font-semibold hover:opacity-80 transition-opacity" aria-label="Slope Calculator Home">
+      <span class="inline-flex items-center justify-center w-6 h-6 border border-[var(--text-primary)] text-xs font-bold leading-none">
+        ⊿
+      </span>
+      <span class="text-[var(--text-primary)] uppercase tracking-wider text-xs sm:text-sm">
+        SLOPE<span class="text-[var(--text-secondary)] font-normal"> // ENGINE</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-1 text-xs font-mono" aria-label="Main navigation">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class={`px-3 py-1.5 transition-colors border ${
+              isActive
+                ? 'border-[var(--border-structural)] bg-[var(--surface-muted)] text-[var(--text-primary)] font-semibold'
+                : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-structural)]'
+            }`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Theme Switcher and Mobile Menu Button -->
+    <div class="flex items-center gap-2">
+      <ThemeSwitcher />
+
+      <!-- Mobile menu toggle -->
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="md:hidden p-1.5 border border-[var(--border-structural)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path id="menu-icon-bars" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path id="menu-icon-close" class="hidden" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer / Menu -->
+  <div id="mobile-nav" class="hidden md:hidden border-t border-[var(--border-structural)] bg-[var(--surface-muted)] px-4 py-3">
+    <nav class="flex flex-col gap-1 text-xs font-mono" aria-label="Mobile navigation">
+      {navItems.map((item) => {
+        const isActive = currentPath === item.href;
+        return (
+          <a
+            href={item.href}
+            class={`px-3 py-2 border ${
+              isActive
+                ? 'border-[var(--border-structural)] bg-[var(--surface-card)] text-[var(--text-primary)] font-semibold'
+                : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  function setupMobileMenu() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-nav');
+    const barsIcon = document.getElementById('menu-icon-bars');
+    const closeIcon = document.getElementById('menu-icon-close');
+
+    if (!toggle || !menu || !barsIcon || !closeIcon) return;
+
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('hidden');
+      barsIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+  } else {
+    setupMobileMenu();
+  }
+  document.addEventListener('astro:page-load', setupMobileMenu);
+</script>

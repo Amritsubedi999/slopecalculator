@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /404
+Disallow: /500
+
+# Primary sitemap location
+Sitemap: /sitemap.xml

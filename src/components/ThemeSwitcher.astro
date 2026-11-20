@@ -1,0 +1,115 @@
+---
+// Theme Switcher Component supporting System, Light, and Dark modes
+---
+
+<div class="theme-switcher-wrapper inline-flex items-center border border-[var(--border-structural)] bg-[var(--surface-muted)] p-0.5 text-xs font-mono" role="group" aria-label="Color theme selection">
+  <button
+    type="button"
+    class="theme-btn px-2.5 py-1 transition-colors border border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+    data-theme-value="system"
+    aria-label="Use system color scheme"
+    aria-pressed="false"
+  >
+    <span class="flex items-center gap-1.5">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="1" stroke-width="2"></rect>
+        <line x1="8" y1="21" x2="16" y2="21" stroke-width="2"></line>
+        <line x1="12" y1="17" x2="12" y2="21" stroke-width="2"></line>
+      </svg>
+      <span>Auto</span>
+    </span>
+  </button>
+  <button
+    type="button"
+    class="theme-btn px-2.5 py-1 transition-colors border border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+    data-theme-value="light"
+    aria-label="Use light color theme"
+    aria-pressed="false"
+  >
+    <span class="flex items-center gap-1.5">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="5" stroke-width="2"></circle>
+        <line x1="12" y1="1" x2="12" y2="3" stroke-width="2"></line>
+        <line x1="12" y1="21" x2="12" y2="23" stroke-width="2"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2"></line>
+        <line x1="1" y1="12" x2="3" y2="12" stroke-width="2"></line>
+        <line x1="21" y1="12" x2="23" y2="12" stroke-width="2"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-width="2"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-width="2"></line>
+      </svg>
+      <span>Light</span>
+    </span>
+  </button>
+  <button
+    type="button"
+    class="theme-btn px-2.5 py-1 transition-colors border border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+    data-theme-value="dark"
+    aria-label="Use dark color theme"
+    aria-pressed="false"
+  >
+    <span class="flex items-center gap-1.5">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-width="2"></path>
+      </svg>
+      <span>Dark</span>
+    </span>
+  </button>
+</div>
+
+<script is:inline>
+  function updateThemeUI(theme) {
+    const buttons = document.querySelectorAll('.theme-btn');
+    buttons.forEach((btn) => {
+      const val = btn.getAttribute('data-theme-value');
+      const isActive = val === theme;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      if (isActive) {
+        btn.classList.add('bg-[var(--surface-card)]', 'text-[var(--text-primary)]', 'border-[var(--border-structural)]', 'shadow-xs');
+        btn.classList.remove('text-[var(--text-secondary)]', 'border-transparent');
+      } else {
+        btn.classList.remove('bg-[var(--surface-card)]', 'text-[var(--text-primary)]', 'border-[var(--border-structural)]', 'shadow-xs');
+        btn.classList.add('text-[var(--text-secondary)]', 'border-transparent');
+      }
+    });
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    const isDark =
+      theme === 'dark' ||
+      (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    updateThemeUI(theme);
+  }
+
+  // Attach click listeners to all theme buttons
+  function initThemeButtons() {
+    const currentTheme = localStorage.getItem('theme') || 'system';
+    updateThemeUI(currentTheme);
+
+    const buttons = document.querySelectorAll('.theme-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetTheme = btn.getAttribute('data-theme-value');
+        if (targetTheme) {
+          setTheme(targetTheme);
+        }
+      });
+    });
+  }
+
+  // Run on page load and astro page swaps
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeButtons);
+  } else {
+    initThemeButtons();
+  }
+  document.addEventListener('astro:page-load', initThemeButtons);
+</script>

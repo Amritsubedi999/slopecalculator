@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Privacy Policy // Slope Calculator";
+const description = "Privacy Policy for Slope Calculator: zero data collection, no telemetry, no tracking cookies, and 100% client-side local mathematical processing.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-4xl mx-auto space-y-8 font-mono text-xs">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-structural)] pb-4 space-y-1">
+      <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider">
+        LEGAL & COMPLIANCE // DOCUMENT REF: PRIV-01
+      </div>
+      <h1 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase">
+        Privacy Policy
+      </h1>
+      <p class="text-[var(--text-secondary)] text-[11px]">
+        Last updated: November 2024. Commitment to zero data ingestion and absolute client-side execution.
+      </p>
+    </div>
+
+    <!-- Section 1: Core Guarantee -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        1. Local Client-Side Execution Guarantee
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        The Slope Calculator operates entirely within your web browser. All coordinate inputs, rise/run measurements, angles, and calculated outputs are processed in volatile client memory and are never transmitted to any web server, database, or cloud infrastructure.
+      </p>
+    </section>
+
+    <!-- Section 2: Data Collection Policy -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        2. No Telemetry, No Analytics, No Cookies
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        This application maintains strict privacy standards:
+      </p>
+      <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)] pl-2">
+        <li><span class="text-[var(--text-primary)] font-semibold">Zero Analytics Scripts:</span> No Google Analytics, Mixpanel, Segment, or tracking pixels are embedded or executed.</li>
+        <li><span class="text-[var(--text-primary)] font-semibold">Zero Advertising:</span> No ad networks, behavioral tracking, or affiliate trackers exist on this site.</li>
+        <li><span class="text-[var(--text-primary)] font-semibold">Zero Tracking Cookies:</span> We do not set any tracking, profiling, or cross-site cookies.</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Local Storage Usage -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        3. Browser LocalStorage Usage
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        The application accesses your browser's <code class="px-1.5 py-0.5 border border-[var(--border-structural)] bg-[var(--surface-muted)]">localStorage</code> strictly for one operational parameter:
+      </p>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        <code class="px-1.5 py-0.5 border border-[var(--border-structural)] bg-[var(--surface-muted)]">theme</code>: Stores your visual mode preference (<code class="text-[var(--text-primary)]">"system"</code>, <code class="text-[var(--text-primary)]">"light"</code>, or <code class="text-[var(--text-primary)]">"dark"</code>) to prevent screen flicker upon page reload. This value never leaves your local device.
+      </p>
+    </section>
+
+    <!-- Section 4: Hosting & Infrastructure -->
+    <section class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 space-y-3">
+      <h2 class="text-sm font-bold text-[var(--text-primary)] uppercase border-l-2 border-[var(--text-primary)] pl-2">
+        4. Edge Hosting & Technical Server Logs
+      </h2>
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        When requesting static HTML, CSS, and JS assets from our Content Delivery Network (e.g., Cloudflare Pages), standard HTTP request logs (IP address, user agent, requested asset path) may be processed transiently by edge routing nodes solely to prevent DDoS attacks and ensure network availability, in accordance with edge network provider security policies.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Calculator from '../components/Calculator.astro';
+import PracticalGuide from '../components/PracticalGuide.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { FAQ_ITEMS } from '../data/faqData';
+
+const pageTitle = "Slope Calculator // High-Precision Engineering & Coordinate Engine";
+const pageDescription = "Calculate slope, percentage grade, pitch angle, and distance between two points or from rise and run with real-time vector schematic and IEEE-754 precision.";
+
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://slopecalculator.pages.dev';
+
+// Generate valid FAQPage JSON-LD schema matching visible content 1:1
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Slope Calculator",
+  "url": siteOrigin,
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "description": pageDescription,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  jsonLd={[webAppJsonLd, faqJsonLd]}
+>
+  <div class="space-y-8">
+    <!-- Top System Header Bar -->
+    <div class="border-b border-[var(--border-structural)] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2 font-mono">
+      <div>
+        <div class="text-[11px] text-[var(--text-secondary)] tracking-wider uppercase mb-1">
+          INSTRUMENT REF: ENG-MATH-SLOPE-V1 // REVISION 4.0
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] uppercase">
+          SLOPE CALCULATOR
+        </h1>
+      </div>
+      <div class="text-[11px] text-[var(--text-secondary)] flex items-center gap-3">
+        <span>CORE: 3-MODE VECTOR ENGINE</span>
+        <span class="inline-block w-1.5 h-1.5 bg-emerald-500 rounded-full" aria-label="Engine active status"></span>
+      </div>
+    </div>
+
+    <!-- Core Calculator Component -->
+    <Calculator />
+
+    <!-- Practical Educational Guide -->
+    <PracticalGuide />
+
+    <!-- Visible FAQ Section -->
+    <FaqSection />
+  </div>
+</BaseLayout>

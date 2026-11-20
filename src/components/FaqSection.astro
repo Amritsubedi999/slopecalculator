@@ -1,0 +1,33 @@
+---
+import { FAQ_ITEMS } from '../data/faqData';
+---
+
+<section id="faq" class="border border-[var(--border-structural)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-6 text-xs font-mono" aria-labelledby="faq-heading">
+  <div class="border-b border-[var(--border-structural)] pb-4 flex items-center justify-between">
+    <div>
+      <div class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wider mb-1">
+        VERIFIED ANSWERS & STANDARDS
+      </div>
+      <h2 id="faq-heading" class="text-base sm:text-lg font-bold text-[var(--text-primary)] uppercase tracking-tight">
+        Frequently Asked Questions
+      </h2>
+    </div>
+    <span class="text-[11px] font-semibold text-[var(--text-secondary)] border border-[var(--border-structural)] px-2 py-0.5">
+      8 ENTRIES
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {FAQ_ITEMS.map((item, index) => (
+      <div class="border border-[var(--border-structural)] p-4 bg-[var(--surface-muted)] space-y-2">
+        <h3 class="text-xs font-bold text-[var(--text-primary)] flex items-start gap-2">
+          <span class="text-[var(--text-secondary)] font-normal">{String(index + 1).padStart(2, '0')}.</span>
+          <span>{item.question}</span>
+        </h3>
+        <p class="text-[var(--text-secondary)] text-[11px] leading-relaxed pl-6">
+          {item.answer}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

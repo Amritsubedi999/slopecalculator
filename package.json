@@ -1,0 +1,23 @@
+{
+  "name": "slope-calculator",
+  "version": "1.0.0",
+  "description": "Production-Ready Slope Calculator with AstroJS and Tailwind CSS v4",
+  "type": "module",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "astro": "ASTRO_TELEMETRY_DISABLED=1 astro",
+    "test": "node --experimental-strip-types tests/calculator.test.ts",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.2.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "astro": "^5.1.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
+}
