@@ -2,25 +2,25 @@
 // Interactive SVG Slope Diagram Component
 ---
 
-<div class="slope-diagram-container w-full border border-[var(--border-structural)] bg-[var(--surface-card)] p-4 relative">
-  <div class="flex items-center justify-between pb-3 mb-2 border-b border-[var(--border-structural)]">
+<div class="slope-diagram-container w-full border border-[var(--border-structural)] bg-[var(--surface-card)] p-4 sm:p-5 relative">
+  <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-structural)]">
     <div class="flex items-center gap-2">
       <span class="inline-block w-2 h-2 bg-[var(--text-primary)]"></span>
       <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--text-primary)]">
-        Geometric Schematic // Real-Time Vector
+        Geometric Schematic // Vector Output
       </h2>
     </div>
-    <div id="diagram-status-badge" class="text-[11px] font-mono px-2 py-0.5 border border-[var(--border-structural)] bg-[var(--surface-muted)] text-[var(--text-secondary)]">
+    <div id="diagram-status-badge" class="text-[10px] font-mono font-semibold px-2 py-0.5 border border-[var(--border-structural)] bg-[var(--surface-muted)] text-[var(--text-secondary)]">
       STANDBY
     </div>
   </div>
 
-  <!-- SVG Container (Responsive viewBox) -->
-  <div class="w-full aspect-[16/10] sm:aspect-[16/9] max-h-[360px] flex items-center justify-center overflow-hidden">
+  <!-- SVG Container (Responsive viewBox with ample label padding) -->
+  <div class="w-full aspect-[16/10] sm:aspect-[16/9] max-h-[340px] flex items-center justify-center overflow-hidden border border-[var(--border-structural)] bg-[var(--bg-page)]">
     <svg
       id="slope-svg"
       class="w-full h-full select-none"
-      viewBox="0 0 500 300"
+      viewBox="0 0 520 310"
       preserveAspectRatio="xMidYMid meet"
       role="img"
       aria-labelledby="diagram-title diagram-desc"
@@ -40,15 +40,13 @@
       </defs>
 
       <!-- Background Grid -->
-      <rect width="500" height="300" fill="url(#grid-pattern)" />
-      <!-- Bounding Border -->
-      <rect width="498" height="298" x="1" y="1" fill="none" stroke="var(--border-structural)" stroke-width="1" />
+      <rect width="520" height="310" fill="url(#grid-pattern)" />
 
       <!-- Diagram Elements Group -->
       <g id="svg-diagram-content">
         <!-- Axes / Baseline reference -->
         <g id="svg-axes" opacity="0.6">
-          <line x1="40" y1="260" x2="460" y2="260" stroke="var(--border-structural)" stroke-width="1" stroke-dasharray="4,4" />
+          <line x1="30" y1="250" x2="490" y2="250" stroke="var(--border-structural)" stroke-width="1" stroke-dasharray="4,4" />
         </g>
 
         <!-- Right Angle Indicator -->
@@ -59,16 +57,16 @@
         <text id="svg-angle-label" x="0" y="0" class="text-[11px] font-mono fill-[var(--text-primary)] font-semibold" text-anchor="middle" dominant-baseline="middle"></text>
 
         <!-- Run Line (Horizontal) -->
-        <line id="svg-run-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--diagram-guide)" stroke-width="2" stroke-dasharray="3,3" />
+        <line id="svg-run-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--diagram-guide)" stroke-width="2" stroke-dasharray="4,3" />
         <text id="svg-run-label" x="0" y="0" class="text-[11px] font-mono fill-[var(--text-secondary)] font-medium" text-anchor="middle" dominant-baseline="hanging"></text>
 
         <!-- Rise Line (Vertical) -->
-        <line id="svg-rise-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--diagram-guide)" stroke-width="2" stroke-dasharray="3,3" />
+        <line id="svg-rise-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--diagram-guide)" stroke-width="2" stroke-dasharray="4,3" />
         <text id="svg-rise-label" x="0" y="0" class="text-[11px] font-mono fill-[var(--text-secondary)] font-medium" text-anchor="start" dominant-baseline="middle"></text>
 
         <!-- Slope / Hypotenuse Line (Bold Solid) -->
         <line id="svg-slope-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--text-primary)" stroke-width="3" />
-        <text id="svg-slope-label" x="0" y="0" class="text-[12px] font-mono fill-[var(--text-primary)] font-bold" text-anchor="middle" dominant-baseline="baseline"></text>
+        <text id="svg-slope-label" x="0" y="0" class="text-[11px] font-mono fill-[var(--text-primary)] font-bold" text-anchor="middle" dominant-baseline="baseline"></text>
 
         <!-- Endpoint P1 -->
         <circle id="svg-p1-dot" cx="0" cy="0" r="4.5" fill="var(--bg-page)" stroke="var(--text-primary)" stroke-width="2" />
@@ -80,35 +78,69 @@
 
         <!-- Edge Case Notification Overlay (Hidden by default) -->
         <g id="svg-edge-case-msg" class="hidden">
-          <rect x="100" y="110" width="300" height="70" fill="var(--surface-card)" stroke="var(--border-structural)" stroke-width="1.5" />
-          <text id="svg-edge-title" x="250" y="135" class="text-[13px] font-mono font-bold fill-[var(--text-primary)]" text-anchor="middle">VERTICAL LINE</text>
-          <text id="svg-edge-desc" x="250" y="158" class="text-[11px] font-mono fill-[var(--text-secondary)]" text-anchor="middle">Δx = 0 // Slope is undefined (90°)</text>
+          <rect x="110" y="115" width="300" height="70" fill="var(--surface-card)" stroke="var(--border-structural)" stroke-width="1.5" />
+          <text id="svg-edge-title" x="260" y="140" class="text-[13px] font-mono font-bold fill-[var(--text-primary)]" text-anchor="middle">VERTICAL LINE</text>
+          <text id="svg-edge-desc" x="260" y="163" class="text-[11px] font-mono fill-[var(--text-secondary)]" text-anchor="middle">Δx = 0 // Slope is undefined (90°)</text>
         </g>
       </g>
     </svg>
   </div>
 
-  <!-- Diagram Legend / Dimension Summary -->
-  <div class="mt-3 pt-2.5 border-t border-[var(--border-structural)] grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-mono">
-    <div class="flex items-center gap-1.5">
-      <span class="inline-block w-3 h-0.5 bg-[var(--text-primary)]"></span>
-      <span class="text-[var(--text-secondary)]">Hypotenuse:</span>
-      <span id="diag-hypotenuse-val" class="font-semibold text-[var(--text-primary)]">-</span>
+  <!-- Dimension Telemetry Cards (Spacious, stacked, zero overlap) -->
+  <div class="mt-4 pt-3 border-t border-[var(--border-structural)]">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-[10px] font-mono text-[var(--text-secondary)] uppercase tracking-wider font-semibold">
+        Dimension Telemetry
+      </span>
+      <span class="text-[9px] font-mono text-[var(--text-secondary)]">
+        CARTESIAN METRIC
+      </span>
     </div>
-    <div class="flex items-center gap-1.5">
-      <span class="inline-block w-3 h-0.5 bg-[var(--diagram-guide)] border-b border-dashed"></span>
-      <span class="text-[var(--text-secondary)]">Run (Δx):</span>
-      <span id="diag-run-val" class="font-semibold text-[var(--text-primary)]">-</span>
-    </div>
-    <div class="flex items-center gap-1.5">
-      <span class="inline-block w-3 h-0.5 bg-[var(--diagram-guide)] border-b border-dashed"></span>
-      <span class="text-[var(--text-secondary)]">Rise (Δy):</span>
-      <span id="diag-rise-val" class="font-semibold text-[var(--text-primary)]">-</span>
-    </div>
-    <div class="flex items-center gap-1.5">
-      <span class="inline-block w-2.5 h-2.5 rounded-full border border-[var(--text-primary)]"></span>
-      <span class="text-[var(--text-secondary)]">Pitch Angle:</span>
-      <span id="diag-angle-val" class="font-semibold text-[var(--text-primary)]">-</span>
+    
+    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+      <!-- Hypotenuse -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-muted)] p-2.5 flex flex-col justify-between">
+        <div class="flex items-center gap-1.5 text-[10px] text-[var(--text-secondary)] uppercase">
+          <span class="inline-block w-2.5 h-0.5 bg-[var(--text-primary)]"></span>
+          <span>Hypotenuse</span>
+        </div>
+        <div id="diag-hypotenuse-val" class="font-bold text-[var(--text-primary)] text-sm sm:text-base mt-1.5 font-mono-math">
+          —
+        </div>
+      </div>
+
+      <!-- Pitch Angle -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-muted)] p-2.5 flex flex-col justify-between">
+        <div class="flex items-center gap-1.5 text-[10px] text-[var(--text-secondary)] uppercase">
+          <span class="inline-block w-2 h-2 rounded-full border border-[var(--text-primary)]"></span>
+          <span>Pitch Angle</span>
+        </div>
+        <div id="diag-angle-val" class="font-bold text-[var(--text-primary)] text-sm sm:text-base mt-1.5 font-mono-math">
+          —
+        </div>
+      </div>
+
+      <!-- Run -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-muted)] p-2.5 flex flex-col justify-between">
+        <div class="flex items-center gap-1.5 text-[10px] text-[var(--text-secondary)] uppercase">
+          <span class="inline-block w-2.5 h-0.5 bg-[var(--diagram-guide)] border-b border-dashed"></span>
+          <span>Run (Δx)</span>
+        </div>
+        <div id="diag-run-val" class="font-bold text-[var(--text-primary)] text-sm sm:text-base mt-1.5 font-mono-math">
+          —
+        </div>
+      </div>
+
+      <!-- Rise -->
+      <div class="border border-[var(--border-structural)] bg-[var(--surface-muted)] p-2.5 flex flex-col justify-between">
+        <div class="flex items-center gap-1.5 text-[10px] text-[var(--text-secondary)] uppercase">
+          <span class="inline-block w-2.5 h-0.5 bg-[var(--diagram-guide)] border-b border-dashed"></span>
+          <span>Rise (Δy)</span>
+        </div>
+        <div id="diag-rise-val" class="font-bold text-[var(--text-primary)] text-sm sm:text-base mt-1.5 font-mono-math">
+          —
+        </div>
+      </div>
     </div>
   </div>
 </div>

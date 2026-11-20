@@ -246,12 +246,12 @@ function renderDiagram(params: {
     scaledH = maxH;
     scaledW = scaledH / aspect;
   }
-  // Enforce minimal visible dimension for very shallow or steep slopes
-  scaledW = Math.max(50, Math.min(320, scaledW));
-  scaledH = Math.max(35, Math.min(180, scaledH));
+  // Enforce comfortable visible dimensions so labels never crowd or collide
+  scaledW = Math.max(90, Math.min(320, scaledW));
+  scaledH = Math.max(45, Math.min(180, scaledH));
 
-  let startX = 90;
-  let startY = isAscending ? 230 : 70;
+  let startX = 85;
+  let startY = isAscending ? 240 : 70;
   let cornerX = startX + scaledW;
   let cornerY = startY;
   let endX = cornerX;
@@ -264,14 +264,26 @@ function renderDiagram(params: {
     slopeLine.setAttribute('x2', String(endX));
     slopeLine.setAttribute('y2', String(endY));
   }
+
+  const isSteep = Math.abs(params.angleDeg) > 55 || scaledW < 130;
+
   if (slopeLabel) {
-    const midX = (startX + endX) / 2;
-    const midY = (startY + endY) / 2 - (isAscending ? 12 : -18);
-    slopeLabel.setAttribute('x', String(midX));
-    slopeLabel.setAttribute('y', String(midY));
     const slopeVal = params.rise / params.run;
-    slopeLabel.textContent = `m = ${formatNumber(slopeVal, currentPrecision)}`;
-    slopeLabel.setAttribute('text-anchor', 'middle');
+    if (isSteep) {
+      // Place slope label to the left of the hypotenuse to avoid crowding the rise line
+      const midX = (startX + endX) / 2 - 12;
+      const midY = (startY + endY) / 2;
+      slopeLabel.setAttribute('x', String(midX));
+      slopeLabel.setAttribute('y', String(midY));
+      slopeLabel.setAttribute('text-anchor', 'end');
+    } else {
+      const midX = (startX + endX) / 2;
+      const midY = (startY + endY) / 2 - (isAscending ? 12 : -18);
+      slopeLabel.setAttribute('x', String(midX));
+      slopeLabel.setAttribute('y', String(midY));
+      slopeLabel.setAttribute('text-anchor', 'middle');
+    }
+    slopeLabel.textContent = `m = ${formatNumber(slopeVal, Math.min(currentPrecision, 4) as Precision)}`;
   }
 
   // Run line
@@ -283,8 +295,8 @@ function renderDiagram(params: {
   }
   if (runLabel) {
     runLabel.setAttribute('x', String((startX + cornerX) / 2));
-    runLabel.setAttribute('y', String(startY + (isAscending ? 14 : -24)));
-    runLabel.textContent = `Run = ${formatNumber(params.run, currentPrecision)}`;
+    runLabel.setAttribute('y', String(startY + (isAscending ? 16 : -24)));
+    runLabel.textContent = `Run = ${formatNumber(params.run, Math.min(currentPrecision, 4) as Precision)}`;
   }
 
   // Rise line
@@ -297,7 +309,7 @@ function renderDiagram(params: {
   if (riseLabel) {
     riseLabel.setAttribute('x', String(cornerX + 12));
     riseLabel.setAttribute('y', String((cornerY + endY) / 2));
-    riseLabel.textContent = `Rise = ${formatNumber(params.rise, currentPrecision)}`;
+    riseLabel.textContent = `Rise = ${formatNumber(params.rise, Math.min(currentPrecision, 4) as Precision)}`;
   }
 
   // Right-angle symbol (10px square)
@@ -312,7 +324,7 @@ function renderDiagram(params: {
 
   // Angle arc at start point
   if (angleArc && angleLabel) {
-    const arcR = Math.min(32, scaledW * 0.35);
+    const arcR = Math.min(28, scaledW * 0.28);
     const rad = (Math.abs(params.angleDeg) * Math.PI) / 180;
     const ySign = isAscending ? -1 : 1;
     const arcEndX = startX + arcR * Math.cos(rad);
@@ -321,12 +333,20 @@ function renderDiagram(params: {
     const sweepFlag = isAscending ? 0 : 1;
     angleArc.setAttribute('d', `M ${startX + arcR} ${startY} A ${arcR} ${arcR} 0 0 ${sweepFlag} ${arcEndX} ${arcEndY}`);
 
-    const labelRad = rad / 2;
-    const labelR = arcR + 18;
-    const lx = startX + labelR * Math.cos(labelRad);
-    const ly = startY + labelR * Math.sin(labelRad) * ySign;
-    angleLabel.setAttribute('x', String(lx));
-    angleLabel.setAttribute('y', String(ly));
+    if (isSteep) {
+      // Angle label offset for steep slopes
+      angleLabel.setAttribute('x', String(startX + arcR + 14));
+      angleLabel.setAttribute('y', String(startY - (isAscending ? 10 : -10)));
+      angleLabel.setAttribute('text-anchor', 'start');
+    } else {
+      const labelRad = rad / 2;
+      const labelR = arcR + 16;
+      const lx = startX + labelR * Math.cos(labelRad);
+      const ly = startY + labelR * Math.sin(labelRad) * ySign;
+      angleLabel.setAttribute('x', String(lx));
+      angleLabel.setAttribute('y', String(ly));
+      angleLabel.setAttribute('text-anchor', 'middle');
+    }
     angleLabel.textContent = `${formatNumber(params.angleDeg, Math.min(currentPrecision, 2) as Precision)}°`;
   }
 
