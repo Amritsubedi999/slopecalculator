@@ -1,11 +1,10 @@
 ---
 const currentYear = new Date().getFullYear();
 const footerLinks = [
-  { href: '/', label: 'Slope Calculator' },
-  { href: '/about', label: 'Technical Specifications' },
+  { href: '/about', label: 'About' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
   { href: '/terms', label: 'Terms of Use' },
-  { href: '/contact', label: 'Contact & Feedback' },
+  { href: '/contact', label: 'Contact' },
 ];
 ---
 
@@ -26,12 +25,12 @@ const footerLinks = [
         </div>
       </div>
 
-      <!-- Col 2: Navigation Links -->
+      <!-- Col 2: Navigation Links in the bottom -->
       <div class="space-y-2">
         <div class="font-semibold text-[var(--text-primary)] uppercase tracking-wider text-[11px]">
-          Index & Documentation
+          Documentation & Legal
         </div>
-        <ul class="space-y-1.5">
+        <ul class="space-y-2">
           {footerLinks.map((link) => (
             <li>
               <a
